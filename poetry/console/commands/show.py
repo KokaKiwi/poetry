@@ -288,16 +288,24 @@ lists all packages available."""
 
     def find_latest_package(self, package):
         from poetry.io import NullIO
+        from poetry.packages import Dependency
         from poetry.puzzle.provider import Provider
         from poetry.version.version_selector import VersionSelector
 
+        DEPENDENCY_CHECKS = {
+            "git": lambda dep: dep.is_vcs(),
+            "file": lambda dep: dep.is_file(),
+            "directory": lambda dep: dep.is_directory(),
+        }
+
         # find the latest version allowed in this pool
-        if package.source_type == "git":
+        if package.source_type in ["git", "file", "directory"]:
+            check = DEPENDENCY_CHECKS[package.source_type]
             for dep in self.poetry.package.requires:
-                if dep.name == package.name and dep.is_vcs():
+                if dep.name == package.name and check(dep):
                     return Provider(
                         self.poetry.package, self.poetry.pool, NullIO()
-                    ).search_for_vcs(dep)[0]
+                    ).search_for(dep)[0]
 
         name = package.name
         selector = VersionSelector(self.poetry.pool)
