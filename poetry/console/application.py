@@ -41,6 +41,8 @@ from .commands.debug import DebugResolveCommand
 
 from .commands.self import SelfUpdateCommand
 
+from .commands.venv import VenvClearCommand
+
 
 class Application(BaseApplication):
     def __init__(self):
@@ -125,6 +127,7 @@ class Application(BaseApplication):
             ShellCommand(),
             ShowCommand(),
             UpdateCommand(),
+            VenvClearCommand(),
             VersionCommand(),
         ]
 
