@@ -1,9 +1,10 @@
 [tool.poetry]
 name = "poetry"
-version = "0.12.17"
+version = "0.12.17+kiwi.1"
 description = "Python dependency management and packaging made easy."
 authors = [
-    "Sébastien Eustace <sebastien@eustace.io>"
+    "Sébastien Eustace <sebastien@eustace.io>",
+    "Jill <kokakiwi@kokakiwi.net>",
 ]
 license = "MIT"
 

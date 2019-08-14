@@ -3,6 +3,7 @@ from .add import AddCommand
 from .build import BuildCommand
 from .check import CheckCommand
 from .config import ConfigCommand
+from .deploy import DeployCommand
 from .develop import DevelopCommand
 from .init import InitCommand
 from .install import InstallCommand
