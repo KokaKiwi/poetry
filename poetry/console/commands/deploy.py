@@ -25,7 +25,7 @@ class DeployCommand(Command):
         if self.option('user'):
             cmd.append('--user')
         if self.option('force'):
-            cmd.append('--no-cache-dir')
+            cmd.append('--force-reinstall')
         cmd.extend(self.argument('pip-args'))
         cmd.append(self.poetry.package.name)
 
